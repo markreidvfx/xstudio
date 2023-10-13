@@ -244,7 +244,7 @@ ThumbnailBufferPtr TDCHelperActor::decode_thumb(const std::vector<std::byte> &bu
     // Read the file:
     ::jpeg_mem_src(
         decompressInfo.get(),
-        reinterpret_cast<const unsigned char *>(buffer.data()),
+        const_cast<unsigned char *>(reinterpret_cast<const unsigned char *>(buffer.data())),
         buffer.size());
 
     int rc = ::jpeg_read_header(decompressInfo.get(), TRUE);
